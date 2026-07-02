@@ -1,0 +1,17 @@
+.DS_Store
+*.log
+.system_generated/
+scratch/
+get_excom_images.py
+get_excom_json_model.py
+get_gallery_images.py
+get_all_excom_data.py
+get_all_blogs_media.py
+check_satyajit_post.py
+search_satyajit.py
+test_coverr_url.py
+test_video_download.py
+download_all_blog_images.py
+download_all_correct_media.py
+download_exact_images.py
+download_hero_video.py
