@@ -2122,5 +2122,21 @@ dialog[open]::backdrop {
     }
 }
 
+/* President Center Showcase */
+.president-showcase {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.president-card {
+    max-width: 300px;
+    width: 100%;
+    border-color: var(--primary) !important;
+    background: linear-gradient(to bottom, var(--bg-white), var(--bg-light)) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
 
 
