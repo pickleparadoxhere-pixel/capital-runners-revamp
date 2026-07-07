@@ -199,16 +199,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-links {
     display: flex;
-    gap: 30px;
+    gap: 16px;
 }
 
 .nav-item {
     font-family: var(--font-heading);
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
     position: relative;
     padding: 8px 0;
+    white-space: nowrap;
 }
 
 .nav-item:hover, .nav-item.active {
@@ -1579,7 +1580,7 @@ dialog[open]::backdrop {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .nav-links, .btn-nav-cta {
         display: none;
     }
