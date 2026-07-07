@@ -321,6 +321,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 8b. Toastmasters Contact Form Handler
+    const tmContactForm = document.getElementById('tm-contact-form');
+    const tmFormStatus = document.getElementById('tm-form-status');
+
+    if (tmContactForm && tmFormStatus) {
+        tmContactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Display sending state
+            tmFormStatus.className = 'form-status';
+            tmFormStatus.innerText = 'Sending your inquiry to CRG Toastmasters officers...';
+            tmFormStatus.classList.remove('hidden');
+            
+            // Simulate API request
+            setTimeout(() => {
+                tmFormStatus.className = 'form-status success';
+                tmFormStatus.innerText = 'Thank you! Your message has been sent. The CRG Toastmasters officers will contact you shortly.';
+                tmContactForm.reset();
+            }, 1200);
+        });
+    }
+
     // 9. Leaderboard Tab Toggle
     const leadTabBtns = document.querySelectorAll('.lead-tab-btn');
     const leadTables = document.querySelectorAll('.leaderboard-table-container');

@@ -29,6 +29,37 @@
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Toastmasters Theme Override */
+body.toastmasters-theme {
+    --primary: #772432; /* Toastmasters Burgundy */
+    --primary-hover: #5c1b26;
+    --primary-glow: rgba(119, 36, 50, 0.15);
+    --border-hover: #772432;
+    
+    --accent-blue: #004165; /* Toastmasters True Blue */
+    --accent-gold: #f2a900; /* Toastmasters Gold */
+}
+
+.toastmasters-theme .gold-text {
+    color: var(--accent-gold);
+}
+.toastmasters-theme .bg-gold {
+    background-color: var(--accent-gold);
+    color: #0f172a;
+}
+.toastmasters-theme .btn-gold {
+    background-color: var(--accent-gold);
+    color: #0f172a;
+}
+.toastmasters-theme .btn-gold:hover {
+    background-color: #e09b00;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(242, 169, 0, 0.2);
+}
+.toastmasters-theme .hero-overlay {
+    background: linear-gradient(to bottom, rgba(0, 65, 101, 0.6) 0%, rgba(15, 23, 42, 0.9) 100%);
+}
+
 /* General Reset */
 * {
     margin: 0;
