@@ -392,5 +392,53 @@ document.addEventListener('DOMContentLoaded', () => {
             el.style.transform = '';
         });
     });
+
+    // 12. ExCom Carousel Auto-Scroll & Manual Navigation
+    const excomCarousel = document.getElementById('excom-carousel');
+    const excomPrev = document.getElementById('excom-prev');
+    const excomNext = document.getElementById('excom-next');
+
+    if (excomCarousel && excomPrev && excomNext) {
+        const scrollAmount = 314; // cardWidth (290) + gap (24)
+        let autoScrollInterval;
+        let direction = 1; // 1 for right, -1 for left
+        
+        // Manual clicks
+        excomPrev.addEventListener('click', () => {
+            excomCarousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            resetAutoScroll();
+        });
+        
+        excomNext.addEventListener('click', () => {
+            excomCarousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            resetAutoScroll();
+        });
+        
+        function startAutoScroll() {
+            autoScrollInterval = setInterval(() => {
+                const maxScrollLeft = excomCarousel.scrollWidth - excomCarousel.clientWidth;
+                
+                if (excomCarousel.scrollLeft >= maxScrollLeft - 5 && direction === 1) {
+                    direction = -1; // Reverse direction to left
+                } else if (excomCarousel.scrollLeft <= 5 && direction === -1) {
+                    direction = 1; // Reverse direction to right
+                }
+                
+                excomCarousel.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+            }, 4000);
+        }
+        
+        function resetAutoScroll() {
+            clearInterval(autoScrollInterval);
+            startAutoScroll();
+        }
+        
+        // Start auto scroll
+        startAutoScroll();
+        
+        // Pause auto scroll on hover
+        excomCarousel.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
+        excomCarousel.addEventListener('mouseleave', startAutoScroll);
+    }
 });
 
