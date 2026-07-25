@@ -440,25 +440,76 @@ document.addEventListener('DOMContentLoaded', () => {
         excomCarousel.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
         excomCarousel.addEventListener('mouseleave', startAutoScroll);
         
-        // Mobile tap profile toggles for ExCom cards
+        // ExCom Centered Modal Popup
+        const excomModal = document.getElementById('excom-modal');
+        const excomModalImg = document.getElementById('excom-modal-img');
+        const excomModalName = document.getElementById('excom-modal-name');
+        const excomModalRole = document.getElementById('excom-modal-role');
+        const excomModalBio = document.getElementById('excom-modal-bio');
+        const excomModalClose = document.getElementById('excom-modal-close');
+        
+        let hideTimer;
+        
+        const showExcomModal = (card) => {
+            clearTimeout(hideTimer);
+            const avatar = card.querySelector('.member-avatar').src;
+            const name = card.querySelector('.member-name').innerText;
+            const role = card.querySelector('.member-role').innerText;
+            const bio = card.getAttribute('data-bio');
+            
+            excomModalImg.src = avatar;
+            excomModalName.innerText = name;
+            excomModalRole.innerText = role;
+            excomModalBio.innerText = bio;
+            
+            excomModal.classList.add('active');
+        };
+        
+        const hideExcomModal = () => {
+            hideTimer = setTimeout(() => {
+                excomModal.classList.remove('active');
+            }, 300); // 300ms buffer to allow moving mouse from card to modal
+        };
+        
         const teamCards = document.querySelectorAll('.team-card');
         teamCards.forEach(card => {
-            card.addEventListener('click', (e) => {
-                // If on mobile/tablet (touch screen or width <= 1024px)
-                if (window.innerWidth <= 1024) {
-                    e.stopPropagation();
-                    const isActive = card.classList.contains('active');
-                    teamCards.forEach(c => c.classList.remove('active'));
-                    if (!isActive) {
-                        card.classList.add('active');
-                    }
+            // Desktop Hover Trigger
+            card.addEventListener('mouseenter', () => {
+                if (window.innerWidth > 1024) {
+                    showExcomModal(card);
                 }
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                if (window.innerWidth > 1024) {
+                    hideExcomModal();
+                }
+            });
+            
+            // Mobile/Tablet Tap Trigger
+            card.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showExcomModal(card);
             });
         });
         
-        // Close ExCom active popups when clicking outside
-        document.addEventListener('click', () => {
-            teamCards.forEach(c => c.classList.remove('active'));
+        // Modal mouse interactions to keep active on hover
+        excomModal.addEventListener('mouseenter', () => clearTimeout(hideTimer));
+        excomModal.addEventListener('mouseleave', () => {
+            if (window.innerWidth > 1024) {
+                hideExcomModal();
+            }
+        });
+        
+        // Close actions
+        excomModalClose.addEventListener('click', () => {
+            excomModal.classList.remove('active');
+        });
+        
+        excomModal.addEventListener('click', (e) => {
+            if (e.target === excomModal) {
+                excomModal.classList.remove('active');
+            }
         });
     }
 });

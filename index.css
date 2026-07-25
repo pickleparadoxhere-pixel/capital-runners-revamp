@@ -617,62 +617,146 @@ section {
     letter-spacing: 0.05em;
 }
 
-/* ExCom Card Profile Popout */
-.profile-popout {
-    position: absolute;
+.team-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* ExCom Biography Modal */
+.excom-modal {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(15, 23, 42, 0.96); /* Elegant dark slate background */
-    color: var(--text-white);
-    border-radius: 12px;
-    padding: 24px;
+    background: rgba(9, 13, 22, 0.75); /* Translucent dark background */
+    backdrop-filter: blur(8px); /* Modern backdrop blur */
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
     opacity: 0;
-    transform: scale(0.9) translateY(10px);
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     pointer-events: none;
-    z-index: 15;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 2000;
 }
 
-.profile-popout h4 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 6px;
-}
-
-.profile-popout .popout-role {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text-white);
-    opacity: 0.8;
-    margin-bottom: 12px;
-}
-
-.profile-popout .popout-bio {
-    font-size: 0.85rem;
-    line-height: 1.5;
-    color: var(--text-white);
-    opacity: 0.95;
-}
-
-.team-card {
-    position: relative;
-    overflow: hidden; /* Prevent popout bleed during bounce */
-}
-
-/* Hover and active popup triggers */
-.team-card:hover .profile-popout,
-.team-card.active .profile-popout {
+.excom-modal.active {
     opacity: 1;
-    transform: scale(1) translateY(0);
     pointer-events: auto;
+}
+
+.excom-modal-content {
+    background: #0f172a; /* Deep Slate Black modal background */
+    border: 2px solid var(--primary); /* Neon Red border glow */
+    border-radius: 16px;
+    width: 90%;
+    max-width: 650px;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(239, 68, 68, 0.25);
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+}
+
+.excom-modal.active .excom-modal-content {
+    transform: scale(1) translateY(0);
+}
+
+.excom-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--text-white);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 10;
+    line-height: 1;
+}
+
+.excom-modal-close:hover {
+    color: var(--primary);
+    transform: rotate(90deg);
+}
+
+.excom-modal-body {
+    display: flex;
+    gap: 30px;
+    padding: 40px;
+    align-items: center;
+    text-align: left;
+}
+
+@media (max-width: 640px) {
+    .excom-modal-body {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+        gap: 20px;
+    }
+}
+
+.excom-modal-left {
+    flex-shrink: 0;
+}
+
+.excom-modal-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 12px; /* Smooth rounded square avatar in popout */
+    object-fit: cover;
+    border: 4px solid var(--primary);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 640px) {
+    .excom-modal-img {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+.excom-modal-right {
+    flex-grow: 1;
+}
+
+.excom-modal-right h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-white);
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+
+.excom-modal-role {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 15px;
+    letter-spacing: 0.03em;
+}
+
+.excom-modal-divider {
+    height: 2px;
+    width: 50px;
+    background: var(--primary);
+    margin-bottom: 15px;
+}
+
+@media (max-width: 640px) {
+    .excom-modal-divider {
+        margin: 0 auto 15px auto;
+    }
+}
+
+.excom-modal-bio {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #cbd5e1; /* Smooth grey-blue for text readability */
 }
 
 /* Schedule Section */
@@ -2207,6 +2291,176 @@ dialog[open]::backdrop {
     border-color: var(--primary) !important;
     background: linear-gradient(to bottom, var(--bg-white), var(--bg-light)) !important;
     box-shadow: var(--shadow-md) !important;
+}
+
+/* Social Media Connect Section */
+.social-section {
+    background-color: var(--bg-white);
+    padding: 90px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.social-intro {
+    text-align: center;
+    color: var(--text-muted);
+    max-width: 650px;
+    margin: 0 auto 50px auto;
+    font-size: 1.1rem;
+}
+
+.social-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 50px;
+}
+
+@media (max-width: 992px) {
+    .social-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .social-cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.social-brand-card {
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-brand-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    transition: var(--transition);
+}
+
+.social-brand-card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 6px;
+}
+
+.social-brand-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    word-break: break-all;
+}
+
+.social-brand-action {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--primary);
+    margin-top: auto;
+    transition: var(--transition);
+}
+
+/* Brand specific hover rules */
+.instagram-brand {
+    color: #e1306c;
+}
+.instagram-brand h3, .instagram-brand p {
+    color: var(--text-main);
+}
+.instagram-brand:hover {
+    border-color: #e1306c;
+    box-shadow: 0 10px 25px rgba(225, 48, 108, 0.15);
+}
+.instagram-brand:hover .social-brand-icon {
+    transform: scale(1.1);
+}
+
+.facebook-brand {
+    color: #1877f2;
+}
+.facebook-brand h3, .facebook-brand p {
+    color: var(--text-main);
+}
+.facebook-brand:hover {
+    border-color: #1877f2;
+    box-shadow: 0 10px 25px rgba(24, 119, 242, 0.15);
+}
+.facebook-brand:hover .social-brand-icon {
+    transform: scale(1.1);
+}
+
+.linkedin-brand {
+    color: #0a66c2;
+}
+.linkedin-brand h3, .linkedin-brand p {
+    color: var(--text-main);
+}
+.linkedin-brand:hover {
+    border-color: #0a66c2;
+    box-shadow: 0 10px 25px rgba(10, 102, 194, 0.15);
+}
+.linkedin-brand:hover .social-brand-icon {
+    transform: scale(1.1);
+}
+
+.strava-brand {
+    color: #fc6100;
+}
+.strava-brand h3, .strava-brand p {
+    color: var(--text-main);
+}
+.strava-brand:hover {
+    border-color: #fc6100;
+    box-shadow: 0 10px 25px rgba(252, 97, 0, 0.15);
+}
+.strava-brand:hover .social-brand-icon {
+    transform: scale(1.1);
+}
+
+/* Instagram Live Embed */
+.instagram-embed-container {
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 40px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.instagram-embed-container h3 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 25px;
+}
+
+.instagram-embed-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.instagram-embed-iframe {
+    width: 100%;
+    max-width: 505px;
+    min-height: 520px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: white;
 }
 
 
