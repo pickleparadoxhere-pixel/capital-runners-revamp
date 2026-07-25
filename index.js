@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (count < target) {
                     count = Math.ceil(count + speed);
                     if (count > target) count = target;
-                    num.innerText = count + (target === 150 || target === 4 || target === 10000 ? '+' : '');
+                    num.innerText = count + '+';
                     setTimeout(updateCount, 25);
                 }
             };
@@ -439,6 +439,27 @@ document.addEventListener('DOMContentLoaded', () => {
         // Pause auto scroll on hover
         excomCarousel.addEventListener('mouseenter', () => clearInterval(autoScrollInterval));
         excomCarousel.addEventListener('mouseleave', startAutoScroll);
+        
+        // Mobile tap profile toggles for ExCom cards
+        const teamCards = document.querySelectorAll('.team-card');
+        teamCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                // If on mobile/tablet (touch screen or width <= 1024px)
+                if (window.innerWidth <= 1024) {
+                    e.stopPropagation();
+                    const isActive = card.classList.contains('active');
+                    teamCards.forEach(c => c.classList.remove('active'));
+                    if (!isActive) {
+                        card.classList.add('active');
+                    }
+                }
+            });
+        });
+        
+        // Close ExCom active popups when clicking outside
+        document.addEventListener('click', () => {
+            teamCards.forEach(c => c.classList.remove('active'));
+        });
     }
 });
 
