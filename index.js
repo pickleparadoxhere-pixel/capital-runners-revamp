@@ -448,10 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const excomModalBio = document.getElementById('excom-modal-bio');
         const excomModalClose = document.getElementById('excom-modal-close');
         
-        let hideTimer;
-        
         const showExcomModal = (card) => {
-            clearTimeout(hideTimer);
             const avatar = card.querySelector('.member-avatar').src;
             const name = card.querySelector('.member-name').innerText;
             const role = card.querySelector('.member-role').innerText;
@@ -465,40 +462,13 @@ document.addEventListener('DOMContentLoaded', () => {
             excomModal.classList.add('active');
         };
         
-        const hideExcomModal = () => {
-            hideTimer = setTimeout(() => {
-                excomModal.classList.remove('active');
-            }, 300); // 300ms buffer to allow moving mouse from card to modal
-        };
-        
         const teamCards = document.querySelectorAll('.team-card');
         teamCards.forEach(card => {
-            // Desktop Hover Trigger
-            card.addEventListener('mouseenter', () => {
-                if (window.innerWidth > 1024) {
-                    showExcomModal(card);
-                }
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                if (window.innerWidth > 1024) {
-                    hideExcomModal();
-                }
-            });
-            
-            // Mobile/Tablet Tap Trigger
+            // Click/Tap Trigger for both Desktop and Mobile
             card.addEventListener('click', (e) => {
                 e.stopPropagation();
                 showExcomModal(card);
             });
-        });
-        
-        // Modal mouse interactions to keep active on hover
-        excomModal.addEventListener('mouseenter', () => clearTimeout(hideTimer));
-        excomModal.addEventListener('mouseleave', () => {
-            if (window.innerWidth > 1024) {
-                hideExcomModal();
-            }
         });
         
         // Close actions
