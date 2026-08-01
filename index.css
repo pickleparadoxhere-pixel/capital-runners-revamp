@@ -557,7 +557,7 @@ section {
     background: var(--bg-white);
     border: 1px solid var(--border-color);
     border-radius: 12px;
-    padding: 40px 30px;
+    padding: 24px 20px;
     text-align: center;
     box-shadow: var(--shadow-sm);
     transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -586,14 +586,14 @@ section {
 }
 
 .pillar-icon-box {
-    width: 65px;
-    height: 65px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 24px auto;
-    font-size: 1.5rem;
+    margin: 0 auto 16px auto;
+    font-size: 1.25rem;
     transition: var(--transition);
 }
 
@@ -663,7 +663,7 @@ section {
     background: var(--bg-white);
     border: 1px solid var(--border-color);
     border-radius: 12px;
-    padding: 30px 20px;
+    padding: 20px 15px;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     display: flex;
@@ -686,9 +686,9 @@ section {
 }
 
 .vibe-icon {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: var(--text-muted);
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     transition: var(--transition);
 }
 
@@ -1647,6 +1647,8 @@ section {
     font-size: 1.15rem;
     color: var(--text-main);
     font-weight: 700;
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 
 .info-item a:hover {
@@ -2261,6 +2263,9 @@ dialog[open]::backdrop {
     .runner-vibe-container {
         padding: 30px 20px !important;
     }
+    .info-item a {
+        font-size: 0.98rem !important;
+    }
 
     /* Hero Typography & CTAs */
     .hero-title {
@@ -2636,6 +2641,115 @@ dialog[open]::backdrop {
     border: 1px solid var(--border-color);
     border-radius: 8px;
     background: white;
+}
+
+/* Member Portal Section */
+.member-portal-section {
+    padding: 90px 0;
+    background-color: var(--bg-dark);
+}
+
+.portal-card {
+    background: rgba(15, 23, 42, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 50px 40px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Glowing Border Effect */
+.portal-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    border: 2px solid transparent;
+    background: linear-gradient(135deg, var(--primary), #ef4444) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    opacity: 0.15;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.portal-card:hover::after {
+    opacity: 0.45;
+}
+
+.portal-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.portal-icon-badge {
+    width: 70px;
+    height: 70px;
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--primary);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.1);
+}
+
+.portal-text {
+    flex-grow: 1;
+}
+
+.portal-text h2 {
+    font-size: 2rem;
+    font-family: var(--font-heading);
+    color: var(--text-white);
+    margin-bottom: 10px;
+}
+
+.portal-text p {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 650px;
+}
+
+.portal-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px var(--primary-glow);
+    color: var(--text-white) !important;
+}
+
+/* Portal Mobile Overrides */
+@media (max-width: 991px) {
+    .portal-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 24px;
+    }
+    
+    .portal-icon-badge {
+        margin: 0 auto;
+    }
+    
+    .portal-card {
+        padding: 40px 24px;
+    }
 }
 
 
