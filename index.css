@@ -411,50 +411,51 @@ h1, h2, h3, h4, h5, h6 {
     border-color: rgba(255, 255, 255, 0.4);
 }
 
-.scroll-indicator {
+.scroll-indicator-btn {
     position: absolute;
-    bottom: 30px;
+    bottom: 35px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
+    width: 48px;
+    height: 48px;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    color: rgba(255, 255, 255, 0.7);
-    cursor: pointer;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.75);
     text-decoration: none;
-    transition: color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
 }
 
-.scroll-indicator:hover {
+.scroll-indicator-btn:hover {
+    background: rgba(239, 68, 68, 0.15);
+    border-color: var(--primary);
     color: var(--primary);
-    transform: translateX(-50%) translateY(3px);
+    transform: translateX(-50%) translateY(4px) scale(1.05);
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
 }
 
-.scroll-text {
-    font-family: var(--font-heading);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-weight: 600;
-    opacity: 0.8;
+.scroll-chevron {
+    font-size: 1.15rem;
+    animation: chevron-bounce 2s infinite;
 }
 
-.bouncing-chevron {
-    animation: scroll-bounce 2s infinite;
-    font-size: 1.3rem;
-    margin-top: 8px;
-}
-
-@keyframes scroll-bounce {
+@keyframes chevron-bounce {
     0%, 20%, 50%, 80%, 100% {
         transform: translateY(0);
     }
     40% {
-        transform: translateY(-6px);
+        transform: translateY(-5px);
     }
     60% {
-        transform: translateY(-3px);
+        transform: translateY(-2px);
     }
 }
 
@@ -2458,94 +2459,6 @@ dialog[open]::backdrop {
     background: white;
 }
 
-/* Background Music Toggle Button */
-.music-toggle-btn {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: rgba(15, 23, 42, 0.65);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    color: var(--text-white);
-    font-size: 1.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 999;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.music-toggle-btn:hover {
-    background: rgba(239, 68, 68, 0.2);
-    border-color: var(--primary);
-    color: var(--primary);
-    transform: scale(1.1);
-}
-
-.music-toggle-btn.playing {
-    animation: pulse-glow 2s infinite;
-    background: rgba(239, 68, 68, 0.15);
-    border-color: rgba(239, 68, 68, 0.4);
-    color: var(--primary);
-}
-
-@keyframes pulse-glow {
-    0% {
-        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
-    }
-    70% {
-        box-shadow: 0 0 0 15px rgba(239, 68, 68, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
-    }
-}
-
-/* Tooltip for first-time visitors */
-.music-tooltip {
-    position: absolute;
-    right: 65px;
-    background: rgba(15, 23, 42, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #fff;
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-size: 0.8rem;
-    font-family: var(--font-heading);
-    font-weight: 600;
-    white-space: nowrap;
-    pointer-events: none;
-    opacity: 0.9;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    transform: translateX(10px);
-    transition: all 0.3s ease;
-    animation: tooltip-slide 1s ease forwards, pulse-tooltip 2s infinite 1.5s;
-}
-
-@keyframes tooltip-slide {
-    to {
-        transform: translateX(0);
-        opacity: 0.9;
-    }
-}
-
-@keyframes pulse-tooltip {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
-
-.music-toggle-btn.playing .music-tooltip,
-.music-toggle-btn:hover .music-tooltip {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateX(15px);
-}
 
 
 
