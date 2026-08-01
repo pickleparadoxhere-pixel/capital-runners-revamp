@@ -291,8 +291,8 @@ h1, h2, h3, h4, h5, h6 {
 /* Hero Section */
 .hero-section {
     position: relative;
-    height: 100vh;
-    min-height: 600px;
+    height: 75vh;
+    min-height: 540px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2035,6 +2035,10 @@ dialog[open]::backdrop {
 
 /* Mobile-Friendly Optimization Overrides */
 @media (max-width: 768px) {
+    .hero-section {
+        height: 70vh;
+        min-height: 480px;
+    }
     /* Global Paddings & Layout */
     section {
         padding: 60px 0 !important;
