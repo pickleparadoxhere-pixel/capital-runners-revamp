@@ -489,17 +489,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const vibeData = {
             speedster: {
                 title: "Your Vibe Match: The Speedster ⚡",
-                desc: "You thrive on speed, intervals, and chasing personal records! You will love our **Thursday Interval & Speed workouts** at Mahatma Mandir. Expect high-intensity drills and teammates who will push you to your absolute limits.",
+                desc: "You thrive on speed, intervals, and chasing personal records! You will love our <strong>Thursday Interval & Speed workouts</strong> at Mahatma Mandir. Expect high-intensity drills and teammates who will push you to your absolute limits.",
                 scheduleLink: "#schedule"
             },
             cruiser: {
                 title: "Your Vibe Match: The Social Cruiser ☕",
-                desc: "You value community, physical activity, and connecting with others! You'll match perfectly with our **Tuesday Social Runs** and **Saturday Cycling Recovery Rides**. Stick around for our post-workout 'Chai Sessions'—the real core of our club!",
+                desc: "You value community, physical activity, and connecting with others! You'll match perfectly with our <strong>Tuesday Social Runs</strong> and <strong>Saturday Cycling Recovery Rides</strong>. Stick around for our post-workout 'Chai Sessions'—the real core of our club!",
                 scheduleLink: "#schedule"
             },
             endurance: {
                 title: "Your Vibe Match: The Distance Runner 🗺️",
-                desc: "You live for the open road, steady breathing, and pushing beyond double-digit kilometers. You belong in our **Sunday Long-Distance runs**. Join our marathon pacing groups to build endurance and share the long-run journey.",
+                desc: "You live for the open road, steady breathing, and pushing beyond double-digit kilometers. You belong in our <strong>Sunday Long-Distance runs</strong>. Join our marathon pacing groups to build endurance and share the long-run journey.",
                 scheduleLink: "#schedule"
             }
         };
