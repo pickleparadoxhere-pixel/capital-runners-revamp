@@ -343,6 +343,31 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 25px;
 }
 
+.hero-logo-container {
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-logo-img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(239, 68, 68, 0.4));
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hero-logo-img:hover {
+    transform: scale(1.08) rotate(3deg);
+}
+
+@media (max-width: 768px) {
+    .hero-logo-img {
+        width: 100px;
+        height: 100px;
+    }
+}
+
 .hero-title {
     font-size: 4.2rem;
     font-weight: 800;
