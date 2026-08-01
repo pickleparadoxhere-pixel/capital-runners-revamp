@@ -354,11 +354,6 @@ h1, h2, h3, h4, h5, h6 {
     height: 140px;
     object-fit: contain;
     filter: drop-shadow(0 0 20px rgba(239, 68, 68, 0.4));
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.hero-logo-img:hover {
-    transform: scale(1.08) rotate(3deg);
 }
 
 @media (max-width: 768px) {
