@@ -481,6 +481,53 @@ document.addEventListener('DOMContentLoaded', () => {
                 excomModal.classList.remove('active');
             }
         });
+
+        // Upbeat Background Music Controller
+        const bgMusic = document.getElementById('bg-music');
+        const musicToggle = document.getElementById('music-toggle');
+        const musicIcon = document.getElementById('music-icon');
+        
+        let musicStarted = false;
+        
+        const playMusic = () => {
+            bgMusic.play().then(() => {
+                musicIcon.className = 'fa-solid fa-volume-high';
+                musicToggle.classList.add('playing');
+                musicStarted = true;
+            }).catch(err => {
+                console.log("Autoplay blocked by browser. Awaiting user interaction.", err);
+            });
+        };
+        
+        const pauseMusic = () => {
+            bgMusic.pause();
+            musicIcon.className = 'fa-solid fa-volume-xmark';
+            musicToggle.classList.remove('playing');
+        };
+        
+        musicToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (bgMusic.paused) {
+                playMusic();
+            } else {
+                pauseMusic();
+            }
+        });
+        
+        // Start music on first interaction (complies with modern browser policies)
+        const startMusicOnInteraction = () => {
+            if (!musicStarted) {
+                playMusic();
+                // Clean up listeners
+                document.removeEventListener('click', startMusicOnInteraction);
+                document.removeEventListener('scroll', startMusicOnInteraction);
+                document.removeEventListener('touchstart', startMusicOnInteraction);
+            }
+        };
+        
+        document.addEventListener('click', startMusicOnInteraction);
+        document.addEventListener('scroll', startMusicOnInteraction);
+        document.addEventListener('touchstart', startMusicOnInteraction);
     }
 });
 

@@ -2458,5 +2458,94 @@ dialog[open]::backdrop {
     background: white;
 }
 
+/* Background Music Toggle Button */
+.music-toggle-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--text-white);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.music-toggle-btn:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+.music-toggle-btn.playing {
+    animation: pulse-glow 2s infinite;
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.4);
+    color: var(--primary);
+}
+
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(239, 68, 68, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
+}
+
+/* Tooltip for first-time visitors */
+.music-tooltip {
+    position: absolute;
+    right: 65px;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0.9;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transform: translateX(10px);
+    transition: all 0.3s ease;
+    animation: tooltip-slide 1s ease forwards, pulse-tooltip 2s infinite 1.5s;
+}
+
+@keyframes tooltip-slide {
+    to {
+        transform: translateX(0);
+        opacity: 0.9;
+    }
+}
+
+@keyframes pulse-tooltip {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.music-toggle-btn.playing .music-tooltip,
+.music-toggle-btn:hover .music-tooltip {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(15px);
+}
+
 
 
