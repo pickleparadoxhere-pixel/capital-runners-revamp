@@ -68,12 +68,19 @@ body.toastmasters-theme {
     scroll-behavior: smooth;
 }
 
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: var(--bg-light);
     color: var(--text-main);
     font-family: var(--font-body);
     line-height: 1.6;
-    overflow-x: hidden;
 }
 
 .container {
@@ -539,61 +546,220 @@ section {
     background-color: var(--bg-light);
 }
 
-.about-grid {
+.about-pillars-grid {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 40px;
-    margin-bottom: 70px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 75px;
 }
 
-.about-text-card {
+.pillar-card {
     background: var(--bg-white);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 40px;
+    border-radius: 12px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.pillar-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Pillar Card Hover Accent Borders */
+.pillar-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: transparent;
+    transition: background 0.3s ease;
+}
+.pillar-card:hover::before {
+    background: linear-gradient(90deg, var(--primary), #ef4444);
+}
+
+.pillar-icon-box {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 20px;
-    box-shadow: var(--shadow-sm);
-}
-
-.lead-text {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--text-main);
-    line-height: 1.5;
-}
-
-.vision-mission-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.vm-card {
-    background: var(--bg-white);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 30px;
-    box-shadow: var(--shadow-sm);
+    margin: 0 auto 24px auto;
+    font-size: 1.5rem;
     transition: var(--transition);
 }
 
-.vm-card:hover {
-    border-color: var(--border-hover);
-    transform: translateX(4px);
+.pillar-card:hover .pillar-icon-box {
+    transform: scale(1.1) rotate(5deg);
 }
 
-.vm-content h3 {
-    font-size: 1.2rem;
-    margin-bottom: 8px;
+/* Dynamic Pillar Icon Colors */
+.spark-icon {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+}
+.mission-icon {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--primary);
+}
+.vision-icon {
+    background: rgba(14, 165, 233, 0.1);
+    color: #0ea5e9;
+}
+
+.pillar-card h3 {
+    font-size: 1.4rem;
+    font-family: var(--font-heading);
+    margin-bottom: 6px;
+    color: var(--text-main);
+}
+
+.pillar-subtitle {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+}
+
+.pillar-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* Interactive Vibe Section */
+.runner-vibe-container {
+    background: rgba(15, 23, 42, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 50px 40px;
+    margin-bottom: 75px;
+    text-align: center;
+}
+
+.runner-vibe-container .subsection-title {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+}
+
+.vibe-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 30px;
+}
+
+.vibe-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px 20px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.vibe-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-md);
+}
+
+.vibe-card.active {
+    border-color: var(--primary);
+    background: rgba(239, 68, 68, 0.02);
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.12);
+    transform: scale(1.02);
+}
+
+.vibe-icon {
+    font-size: 1.8rem;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    transition: var(--transition);
+}
+
+.vibe-card:hover .vibe-icon,
+.vibe-card.active .vibe-icon {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+.vibe-card h4 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.vibe-card p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* Result box */
+.vibe-result-box {
+    margin-top: 40px;
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    opacity: 1;
+}
+
+.vibe-result-placeholder {
+    font-size: 1rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.vibe-result-placeholder i {
     color: var(--primary);
 }
 
-.vm-content p {
-    font-size: 0.95rem;
-    color: var(--text-muted);
+.vibe-result-content {
+    text-align: center;
+    max-width: 600px;
+}
+
+.vibe-result-content h4 {
+    font-size: 1.35rem;
+    color: var(--primary);
+    margin-bottom: 12px;
+    font-family: var(--font-heading);
+}
+
+.vibe-result-content p {
+    font-size: 0.98rem;
+    color: var(--text-main);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.vibe-result-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    font-size: 0.9rem;
 }
 
 /* ExCom Section */
@@ -1752,8 +1918,14 @@ dialog[open]::backdrop {
 
 /* Responsive Breakpoints */
 @media (max-width: 1024px) {
-    .about-grid {
+    .about-pillars-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .vibe-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
     }
     
     .calc-container {
@@ -2083,6 +2255,12 @@ dialog[open]::backdrop {
     .section-title {
         font-size: 1.85rem;
     }
+    .pillar-card {
+        padding: 30px 20px !important;
+    }
+    .runner-vibe-container {
+        padding: 30px 20px !important;
+    }
 
     /* Hero Typography & CTAs */
     .hero-title {
@@ -2256,6 +2434,7 @@ dialog[open]::backdrop {
     position: relative;
     width: 100%;
     margin-top: 40px;
+    overflow: hidden;
 }
 
 .team-carousel-container {

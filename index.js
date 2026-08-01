@@ -481,6 +481,58 @@ document.addEventListener('DOMContentLoaded', () => {
                 excomModal.classList.remove('active');
             }
         });
+
+        // Runner Vibe Persona Quiz Selector
+        const vibeCards = document.querySelectorAll('.vibe-card');
+        const vibeResult = document.getElementById('vibe-result');
+        
+        const vibeData = {
+            speedster: {
+                title: "Your Vibe Match: The Speedster ⚡",
+                desc: "You thrive on speed, intervals, and chasing personal records! You will love our **Thursday Interval & Speed workouts** at Mahatma Mandir. Expect high-intensity drills and teammates who will push you to your absolute limits.",
+                scheduleLink: "#schedule"
+            },
+            cruiser: {
+                title: "Your Vibe Match: The Social Cruiser ☕",
+                desc: "You value community, physical activity, and connecting with others! You'll match perfectly with our **Tuesday Social Runs** and **Saturday Cycling Recovery Rides**. Stick around for our post-workout 'Chai Sessions'—the real core of our club!",
+                scheduleLink: "#schedule"
+            },
+            endurance: {
+                title: "Your Vibe Match: The Distance Runner 🗺️",
+                desc: "You live for the open road, steady breathing, and pushing beyond double-digit kilometers. You belong in our **Sunday Long-Distance runs**. Join our marathon pacing groups to build endurance and share the long-run journey.",
+                scheduleLink: "#schedule"
+            }
+        };
+        
+        vibeCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // Remove active from others
+                vibeCards.forEach(c => c.classList.remove('active'));
+                
+                // Add active to this
+                card.classList.add('active');
+                
+                // Get data
+                const type = card.getAttribute('data-vibe');
+                const info = vibeData[type];
+                
+                // Update result box with fade-in animation
+                vibeResult.style.opacity = '0';
+                vibeResult.style.transform = 'translateY(10px)';
+                
+                setTimeout(() => {
+                    vibeResult.innerHTML = `
+                        <div class="vibe-result-content">
+                            <h4>${info.title}</h4>
+                            <p>${info.desc}</p>
+                            <a href="${info.scheduleLink}" class="btn btn-primary vibe-result-btn">See Schedule</a>
+                        </div>
+                    `;
+                    vibeResult.style.opacity = '1';
+                    vibeResult.style.transform = 'translateY(0)';
+                }, 150);
+            });
+        });
     }
 });
 
