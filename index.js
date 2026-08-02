@@ -533,34 +533,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 150);
             });
         });
-        
-        // Listen for member portal clicks to open in a clean popup frame
-        const portalTriggers = document.querySelectorAll('.portal-trigger');
-        portalTriggers.forEach(trigger => {
-            trigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                const url = trigger.getAttribute('href');
-                
-                // Calculate popup position to center it on the screen
-                const width = 540;
-                const height = 780;
-                const left = (window.screen.width / 2) - (width / 2);
-                const top = (window.screen.height / 2) - (height / 2);
-                
-                const popup = window.open(
-                    url, 
-                    'CRG_Member_Portal', 
-                    `width=${width},height=${height},top=${top},left=${left},scrollbars=yes,resizable=yes,status=no,location=no,toolbar=no,menubar=no`
-                );
-                
-                if (popup) {
-                    popup.focus();
-                } else {
-                    // Fallback: If browser blocked the popup, open in a new tab
-                    window.open(url, '_blank', 'noopener,noreferrer');
-                }
-            });
-        });
     }
 });
 
