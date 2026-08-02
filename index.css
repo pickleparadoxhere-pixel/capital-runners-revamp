@@ -206,7 +206,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-links {
     display: flex;
-    gap: 16px;
+    align-items: center;
+    gap: 20px;
 }
 
 .nav-item {
@@ -217,10 +218,88 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     padding: 8px 0;
     white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
 }
 
 .nav-item:hover, .nav-item.active {
     color: var(--primary);
+}
+
+/* Nav Dropdown Menus */
+.nav-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding: 8px 0;
+    transition: var(--transition);
+}
+
+.dropdown-toggle:hover, .nav-dropdown:hover .dropdown-toggle {
+    color: var(--primary);
+}
+
+.dropdown-arrow {
+    font-size: 0.65rem;
+    transition: transform 0.2s ease;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    padding: 8px 0;
+    min-width: 170px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: 1100;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.nav-dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-item {
+    display: block;
+    padding: 10px 20px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    transition: var(--transition);
+    text-align: left;
+    white-space: nowrap;
+}
+
+.dropdown-item:hover {
+    color: var(--primary);
+    background: rgba(239, 68, 68, 0.04);
 }
 
 .btn-join {
